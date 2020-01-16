@@ -30,10 +30,18 @@ export class Connector extends Component {
 
     this._panResponder = PanResponder.create({
       // Ask to be the responder:
-      onStartShouldSetPanResponder: (event, gestureState) => true,
+
+
+      onStartShouldSetPanResponder: (event, gestureState) => true,  
       onStartShouldSetPanResponderCapture: (event, gestureState) => true,
-      onMoveShouldSetPanResponder: (event, gestureState) => true,
       onMoveShouldSetPanResponderCapture: (event, gestureState) => true,
+
+
+      
+      onMoveShouldSetPanResponder: (event, gestureState) => true,
+
+
+
 
       onPanResponderGrant: (event, gestureState) => {
         // The gesture has started. Show visual feedback so the user knows
@@ -97,7 +105,10 @@ export class Connector extends Component {
     const {
       x,
       y,
-      size,
+    //  size,
+      width,
+      height,
+      type
     } = this.props;
 
     return (
@@ -106,11 +117,13 @@ export class Connector extends Component {
           position: 'absolute',
           left: x,
           top: y,
-          width: size,
-          height: size,
-          borderWidth: 2,
+          width: width,
+          height: height,
+          borderRadius: type === CONNECTOR_CENTER ? 0 : width / 2,
+          borderWidth: 1,
           borderColor: 'black',
-          backgroundColor: 'white'
+          backgroundColor: 'white',
+          opacity: type === CONNECTOR_CENTER ? 0 : 1
         }}
         {...this._panResponder.panHandlers}
       />

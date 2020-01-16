@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {
-  View,
+  TouchableWithoutFeedback, View, TouchableOpacity
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -15,14 +15,17 @@ export class DragResizeContainer extends PureComponent {
       style,
       onInit,
       children,
+      onPress
     } = this.props;
 
     return (
-      <View
+      <TouchableOpacity
+      activeOpacity={1}
         ref={view => {
           this.canvas = view;
         }}
         style={style}
+        onPress={onPress}
         onLayout={() => {
           this.canvas.measure(
             (fx, fy, w, h, x, y) => {
@@ -37,7 +40,7 @@ export class DragResizeContainer extends PureComponent {
         }}
       >
         {children}
-      </View>
+      </TouchableOpacity>
     );
   }
 };
