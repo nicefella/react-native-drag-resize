@@ -556,6 +556,8 @@ export class DragResizeBlock extends Component {
       onResizeEnd([
         this.state.x,
         this.state.y,
+        this.state.w,
+        this.state.h,
       ]);
     }
   }
