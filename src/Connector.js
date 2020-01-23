@@ -137,7 +137,7 @@ export class Connector extends Component {
     }
 
   }
-}
+
 
 Connector.propTypes = {
   x: PropTypes.number,
