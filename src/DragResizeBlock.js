@@ -200,9 +200,9 @@ export class DragResizeBlock extends Component {
       calculateY: (height) => {
         return - CONNECTOR_SIZE / 2;
       },
-      onStart: this.onRemoveItem,
+      onStart: ()=>{},
       onMove: ()=>{},
-      onEnd: ()=>{},
+      onEnd: this.onRemoveItem,
     };
 
   }
@@ -737,7 +737,7 @@ export class DragResizeBlock extends Component {
           width: w,
           height: h,
           padding: 0, //CONNECTOR_SIZE / 2,
-          zIndex: isSelected ? zIndex + 1 : zIndex,
+          zIndex: !isDisabled ? zIndex + 1 : zIndex,
         }}
       >
         <TouchableWithoutFeedback

@@ -125,9 +125,11 @@ export class Connector extends Component {
             height: height,
             borderWidth: 1,
             borderColor: 'black',
-            backgroundColor: 'white',
+            backgroundColor: type === CONNECTOR_REMOVE_ITEM ? 'black': 'white',
+            justifyContent:'center',
+            alignItems:'center',
             borderRadius: type === CONNECTOR_CENTER ? 0 : width / 2,
-            opacity: type === CONNECTOR_CENTER ? 0 : 1
+            opacity: type === CONNECTOR_CENTER ? 0 : 1,
           }}
           {...this._panResponder.panHandlers}
         >
