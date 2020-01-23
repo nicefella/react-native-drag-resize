@@ -16,7 +16,8 @@ import {
   CONNECTOR_BOTTOM_MIDDLE,
   CONNECTOR_BOTTOM_LEFT,
   CONNECTOR_MIDDLE_LEFT,
-  CONNECTOR_CENTER
+  CONNECTOR_CENTER,
+  CONNECTOR_REMOVE_ITEM
 } from './Connector';
 
 export const AXIS_X = 'x';
@@ -190,6 +191,20 @@ export class DragResizeBlock extends Component {
       onMove: this.onDrag,
       onEnd: this.onDragEnd,
     };
+
+
+    this.connectorsMap[CONNECTOR_REMOVE_ITEM] = {
+      calculateX: (width) => {
+        return width - CONNECTOR_SIZE / 2;
+      },
+      calculateY: (height) => {
+        return 0;
+      },
+      onStart: this.onRemoveItem,
+      onMove: ()=>{},
+      onEnd: ()=>{},
+    };
+
   }
 
   /**
@@ -205,6 +220,18 @@ export class DragResizeBlock extends Component {
       onPress(event);
     }
   }
+
+
+  onRemoveItem = (event) => {
+    const {
+      onRemoveItem,
+    } = this.props;
+
+    if (onRemoveItem !== null) {
+      onRemoveItem(event);
+    }
+  }
+
 
   /**
    * Handle resize start event.
@@ -759,6 +786,7 @@ DragResizeBlock.defaultProps = {
     CONNECTOR_BOTTOM_LEFT,
     CONNECTOR_MIDDLE_LEFT,
     CONNECTOR_CENTER,
+    CONNECTOR_REMOVE_ITEM
   ],
 
   onPress: null,

@@ -14,6 +14,7 @@ export const CONNECTOR_BOTTOM_MIDDLE = 'bm';
 export const CONNECTOR_BOTTOM_LEFT = 'bl';
 export const CONNECTOR_MIDDLE_LEFT = 'ml';
 export const CONNECTOR_CENTER = 'c';
+export const CONNECTOR_REMOVE_ITEM = 'ri';
 
 /**
  * Connector component for handle touch events.
