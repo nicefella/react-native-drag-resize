@@ -198,7 +198,7 @@ export class DragResizeBlock extends Component {
         return width - CONNECTOR_SIZE / 2;
       },
       calculateY: (height) => {
-        return 0;
+        return - CONNECTOR_SIZE / 2;
       },
       onStart: this.onRemoveItem,
       onMove: ()=>{},
@@ -686,6 +686,7 @@ export class DragResizeBlock extends Component {
   renderConnectors = () => {
     const {
       connectors,
+      removeItemComponent
     } = this.props;
 
     const {
@@ -706,6 +707,7 @@ export class DragResizeBlock extends Component {
           onStart={this.connectorsMap[connectorType].onStart}
           onMove={this.connectorsMap[connectorType].onMove}
           onEnd={this.connectorsMap[connectorType].onEnd}
+          removeItemComponent={removeItemComponent}
         />
       );
     });

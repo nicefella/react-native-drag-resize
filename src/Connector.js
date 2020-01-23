@@ -109,26 +109,33 @@ export class Connector extends Component {
     //  size,
       width,
       height,
-      type
+      type,
+      removeItemComponent
     } = this.props;
 
-    return (
-      <View
-        style={{
-          position: 'absolute',
-          left: x,
-          top: y,
-          width: width,
-          height: height,
-          borderRadius: type === CONNECTOR_CENTER ? 0 : width / 2,
-          borderWidth: 1,
-          borderColor: 'black',
-          backgroundColor: 'white',
-          opacity: type === CONNECTOR_CENTER ? 0 : 1
-        }}
-        {...this._panResponder.panHandlers}
-      />
-    );
+    const removeIcon = type === CONNECTOR_REMOVE_ITEM && removeItemComponent;
+
+      return (
+        <View
+          style={{
+            position: 'absolute',
+            left: x,
+            top: y,
+            width: width,
+            height: height,
+            borderWidth: 1,
+            borderColor: 'black',
+            backgroundColor: 'white',
+            borderRadius: type === CONNECTOR_CENTER ? 0 : width / 2,
+            opacity: type === CONNECTOR_CENTER ? 0 : 1
+          }}
+          {...this._panResponder.panHandlers}
+        >
+          {removeIcon}
+        </View>
+      );
+    }
+
   }
 }
 
