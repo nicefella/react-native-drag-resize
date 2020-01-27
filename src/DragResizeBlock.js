@@ -715,9 +715,11 @@ export class DragResizeBlock extends Component {
 
   render() {
     const {
+      x:px,y:py,w:pw,h:ph,
       children,
       isDisabled,
       zIndex,
+      inBlockEditing
     } = this.props;
 
     const {
@@ -728,35 +730,61 @@ export class DragResizeBlock extends Component {
       isSelected,
     } = this.state;
 
-    return (
-      <View
-        style={{
-          position: 'absolute',
-          left: x,
-          top: y,
-          width: w,
-          height: h,
-          padding: 0, //CONNECTOR_SIZE / 2,
-          zIndex: !isDisabled ? zIndex + 1 : zIndex,
-        }}
-      >
-        <TouchableWithoutFeedback
-          onPress={this.onPress}
+    if (inBlockEditing) {
+      return (
+        <View
+          style={{
+            position: 'absolute',
+            left: x,
+            top: y,
+            width: w,
+            height: h,
+            padding: 0, //CONNECTOR_SIZE / 2,
+            zIndex: !isDisabled ? zIndex + 1 : zIndex,
+          }}
         >
-          <View
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
+          <TouchableWithoutFeedback
+            onPress={this.onPress}
           >
-            {children}
-          </View>
-        </TouchableWithoutFeedback>
-
-        {isDisabled ? null : this.renderConnectors()}
-
-      </View>
-    );
+            <View
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              {children}
+            </View>
+          </TouchableWithoutFeedback>
+  
+          {isDisabled ? null : this.renderConnectors()}
+  
+        </View>
+      );
+    }
+    else {
+      return (
+        <View
+          style={{
+            position: 'absolute',
+            left: px,
+            top: py,
+            width: pw,
+            height: ph,
+            padding: 0, 
+            zIndex: !isDisabled ? zIndex + 1 : zIndex,
+          }}
+        >
+            <View
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              {children}
+            </View>
+        </View>
+      );
+    }
   }
 }
 
