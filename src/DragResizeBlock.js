@@ -685,6 +685,8 @@ export class DragResizeBlock extends Component {
    */
   renderConnectors = () => {
     const {
+      isDisabled,
+      zIndex,
       connectors,
       removeItemComponent
     } = this.props;
@@ -708,6 +710,7 @@ export class DragResizeBlock extends Component {
           onMove={this.connectorsMap[connectorType].onMove}
           onEnd={this.connectorsMap[connectorType].onEnd}
           removeItemComponent={removeItemComponent}
+          zIndex={!isDisabled ? zIndex + 1 : zIndex}
         />
       );
     });
@@ -740,7 +743,8 @@ export class DragResizeBlock extends Component {
             width: w,
             height: h,
             padding: 0, //CONNECTOR_SIZE / 2,
-            zIndex: !isDisabled ? zIndex + 1 : zIndex,
+         //   zIndex: !isDisabled ? zIndex + 1 : zIndex,
+         //  zIndex
           }}
         >
           <TouchableWithoutFeedback

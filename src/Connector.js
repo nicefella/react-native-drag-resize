@@ -110,6 +110,7 @@ export class Connector extends Component {
       width,
       height,
       type,
+      zIndex,
       removeItemComponent
     } = this.props;
 
@@ -130,6 +131,7 @@ export class Connector extends Component {
             alignItems:'center',
             borderRadius: type === CONNECTOR_CENTER ? 0 : width / 2,
             opacity: type === CONNECTOR_CENTER ? 0 : 1,
+            zIndex
           }}
           {...this._panResponder.panHandlers}
         >
